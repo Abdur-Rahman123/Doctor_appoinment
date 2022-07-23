@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-9">
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col text-center">
+            <div class="form-group col-md-6 ">
+              <label>Month</label>
+              <select #mySelect formControlName="month"
+               (change)="onChangeMonth(mySelect.value)" name="Gender" id="gender"
+              class="form-control">
+              <option selected disabled>Select Month</option>  
+                  <option *ngFor="let month of months"
+                  value={{month.id}}>{{month.month}}</option>
+                  
+                </select>
+            </div>
+          </div>
+          <div class="col text-right">
+            <button routerLink="/create-schedule" (click)="onCreateSchedule()" 
+        
+            class="btn btn-success">create schedule</button>
+          </div>
+        </div>
+       
+      </form>
+        <full-calendar #fullcalendar [options]="calendarOptions"></full-calendar>
+        
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+</div>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" id="modal_button" [hidden]="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div #test class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">schedule information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+          <label class="col-md-2" for="">firstName:</label>
+          <h3 class="col-md-4">{{schedulDetails?.firstName}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">LastName:</label>
+          <h3 class="col-md-4">{{schedulDetails?.lastName}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">Email:</label>
+          <h3 class="col-md-4">{{schedulDetails?.email}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">Gender:</label>
+          <h3 class="col-md-4">{{schedulDetails?.gender}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">Age:</label>
+          <h3 class="col-md-4">{{schedulDetails?.age}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">Date:</label>
+          <h3 class="col-md-4">{{schedulDetails?.date}}</h3>
+        </div>
+        <div class="row">
+          <label class="col-md-2" for="">Time:</label>
+          <h3 class="col-md-4">{{schedulDetails?.time}}</h3>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
