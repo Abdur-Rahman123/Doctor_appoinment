@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Calendar, CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
@@ -11,7 +11,7 @@ import { schedule } from '../models/Schedule';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit {
 
   @ViewChild("fullcalendar")calendarComponent!:FullCalendarComponent;
 
@@ -59,10 +59,10 @@ months:any=[
     })
    this.routerId=this.route.snapshot.paramMap.get('id');
     if(this.routerId){
-      this.form.get('month')?.setValue(this.routerId)
-    setTimeout(()=>{                         
-      this.onChangeMonth(this.routerId)
- }, 1000);
+      
+//     setTimeout(()=>{                         
+//       this.onChangeMonth(this.routerId)
+//  }, 1000);
      
     }
     
@@ -117,6 +117,14 @@ months:any=[
     this.calendarApi.gotoDate(target);
 }
 
+ngAfterViewInit(): void {
+  this.calendarApi=this.calendarComponent.getApi();
+  if(this.routerId){
+    this.form.get('month')?.setValue(this.routerId)
+    this.onChangeMonth(this.routerId);
+  }
+  
+}
 
 
 }
